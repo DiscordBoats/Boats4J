@@ -1,0 +1,116 @@
+buildscript {
+    ext.proj_version = '1.0.0'
+
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.+'
+    }
+}
+
+
+plugins {
+    id 'com.jfrog.bintray' version '1.8.1'
+}
+
+group 'xyz.discordboats'
+version proj_version
+
+allprojects {
+    apply plugin: 'maven'
+    apply plugin: 'maven-publish'
+    apply plugin: 'java-library'
+    apply plugin: 'java'
+
+    dependencies {
+        api 'org.apache.commons:commons-math3:3.6.1'
+        api 'org.slf4j:slf4j-api:1.7.25'
+        compile 'net.dv8tion:JDA:3.8.0_427'
+
+        implementation 'com.google.guava:guava:23.0'
+        implementation 'com.squareup.okhttp3:okhttp:3.11.0'
+
+        testImplementation 'junit:junit:4.12'
+    }
+
+    repositories {
+        jcenter()
+    }
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+            groupId 'xyz.discordboats'
+            artifactId 'Boats4J'
+            version proj_version
+            artifact sourcesJar
+            artifact javadocJar
+            pom.withXml {
+                asNode().children().last() + {
+                    resolveStrategy = Closure.DELEGATE_FIRST
+                    name 'Boats4J'
+                    description 'Boats4J is the official Java API Wrapper of Discord Boats\' API.'
+                    url 'https://github.com/DiscordBoats/Boats4J'
+                    scm {
+                        url 'https://github.com/DiscordBoats/Boats4J'
+                        connection 'scm:git:git://github.com/DiscordBoats/Boats4J.git'
+                        developerConnection "scm:git:ssh:git@github.com:DiscordBoats/Boats4J.git"
+                    }
+                    licenses {
+                        license {
+                            name 'MIT'
+                            url 'https://opensource.org/licenses/MIT'
+                            distribution 'repo'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id 'dondish'
+                            name 'Oded Shapira'
+                            email 'odedshapira1@gmail.com'
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+bintray {
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_API_KEY')
+    publications = ['maven']
+    pkg {
+        repo = 'maven'
+        name = 'Boats4J'
+        userOrg = 'DiscordBoats'
+        licenses = ['MIT']
+        websiteUrl = 'https://github.com/DiscordBoats/Boats4J'
+        issueTrackerUrl = 'https://github.com/DiscordBoats/Boats4J/issues'
+        vcsUrl = 'https://github.com/DiscordBoats/Boats4J.git'
+        githubRepo = 'DiscordBoats/Boats4J'
+        version {
+            name = proj_version
+            released = new Date()
+            vcsTag = proj_version
+            gpg {
+                sign = true
+            }
+            attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
+        }
+    }
+}
