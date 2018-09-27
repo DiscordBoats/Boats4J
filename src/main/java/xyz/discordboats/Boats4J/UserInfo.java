@@ -74,4 +74,18 @@ public class UserInfo {
     public int hashCode() {
         return Objects.hash(id, name, website, twitter, github, instagram, reddit, bio);
     }
+
+    @Override
+    public String toString() {
+        return "UserInfo{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", website='" + website + '\'' +
+                ", twitter='" + twitter + '\'' +
+                ", github='" + github + '\'' +
+                ", instagram='" + instagram + '\'' +
+                ", reddit='" + reddit + '\'' +
+                ", bio='" + bio + '\'' +
+                '}';
+    }
 }

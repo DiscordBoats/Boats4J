@@ -123,4 +123,25 @@ public class BotInfo {
     public int hashCode() {
         return Objects.hash(id, name, prefix, lib, server_count, shortDesc, desc, avatar, ownerid, ownername, invite, discord, website, inQueue, certified);
     }
+
+    @Override
+    public String toString() {
+        return "BotInfo{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", prefix='" + prefix + '\'' +
+                ", lib='" + lib + '\'' +
+                ", server_count=" + server_count +
+                ", shortDesc='" + shortDesc + '\'' +
+                ", desc='" + desc + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", ownerid='" + ownerid + '\'' +
+                ", ownername='" + ownername + '\'' +
+                ", invite='" + invite + '\'' +
+                ", discord='" + discord + '\'' +
+                ", website='" + website + '\'' +
+                ", inQueue='" + inQueue + '\'' +
+                ", certified='" + certified + '\'' +
+                '}';
+    }
 }

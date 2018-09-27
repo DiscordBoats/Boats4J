@@ -122,7 +122,7 @@ public class Boats4J {
                 return null;
             }
             JSONObject json = new JSONObject(body.string());
-            BotInfo info = new BotInfo(json.getString("id"), json.getString("name"), json.getString("prefix"), json.getString("lib"), json.getLong("server_count"), json.getString("shortDesc"), json.getString("desc"), json.getString("avatar"), json.getString("ownerid"), json.getString("ownername"), json.getString("invite"), json.getString("discord"), json.getString("website"), json.getString("inQueue"), json.getString("certified"));
+            BotInfo info = new BotInfo(json.getString("id"), json.getString("name"), json.getString("prefix"), json.getString("lib"), json.getLong("server_count"), json.getString("shortDesc"), json.getString("desc"), json.getString("avatar"), json.getString("ownerid"), json.getString("ownername"), json.getString("invite"), json.optString("discord"), json.optString("website"), json.getString("inQueue"), json.optString("certified"));
             body.close();
             resp.close();
             return info;
@@ -141,7 +141,7 @@ public class Boats4J {
                 return null;
             }
             JSONObject json = new JSONObject(body.string());
-            UserInfo info = new UserInfo(json.getString("id"), json.getString("name"), json.getString("website"), json.getString("twitter"), json.getString("github"), json.getString("instagram"), json.getString("reddit"), json.getString("bio"));
+            UserInfo info = new UserInfo(json.getString("id"), json.getString("name"), json.optString("website"), json.optString("twitter"), json.optString("github"), json.optString("instagram"), json.optString("reddit"), json.optString("bio"));
             body.close();
             resp.close();
             return info;
