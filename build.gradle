@@ -91,8 +91,8 @@ publishing {
 }
 
 bintray {
-    user = hasProperty('user') ? property('user') : ''
-    key = hasProperty('key') ? property('key') : ''
+    user = property('user')?: ''
+    key = property('key')?: ''
     publications = ['maven']
     pkg {
         repo = 'Boats4J'
