@@ -91,26 +91,31 @@ publishing {
 }
 
 bintray {
-    user = hasProperty('user') ? property('user') : ''
-    key = hasProperty('key') ? property('key') : ''
-    publications = ['maven']
-    pkg {
-        repo = 'Boats4J'
-        name = 'Boats4J'
-        userOrg = 'discordboats'
-        licenses = ['MIT']
-        websiteUrl = 'https://github.com/DiscordBoats/Boats4J'
-        issueTrackerUrl = 'https://github.com/DiscordBoats/Boats4J/issues'
-        vcsUrl = 'https://github.com/DiscordBoats/Boats4J.git'
-        githubRepo = 'DiscordBoats/Boats4J'
-        version {
-            name = proj_version
-            released = new Date()
-            vcsTag = proj_version
-            gpg {
-                sign = true
+    try {
+        user = property('user')
+        key = property('key')
+        publications = ['maven']
+        pkg {
+            repo = 'Boats4J'
+            name = 'Boats4J'
+            userOrg = 'discordboats'
+            licenses = ['MIT']
+            websiteUrl = 'https://github.com/DiscordBoats/Boats4J'
+            issueTrackerUrl = 'https://github.com/DiscordBoats/Boats4J/issues'
+            vcsUrl = 'https://github.com/DiscordBoats/Boats4J.git'
+            githubRepo = 'DiscordBoats/Boats4J'
+            version {
+                name = proj_version
+                released = new Date()
+                vcsTag = proj_version
+                gpg {
+                    sign = true
+                }
+                attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
             }
-            attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
         }
+    } catch (MissingPropertyException ignored) {
+        
     }
+    
 }
