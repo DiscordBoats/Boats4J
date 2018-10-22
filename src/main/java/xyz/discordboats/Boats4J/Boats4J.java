@@ -20,8 +20,8 @@ import java.util.concurrent.TimeUnit;
 public class Boats4J {
     private final String token;
     private final String botid;
-    private static final OkHttpClient client = new OkHttpClient();;
-    private static final String url = "https://discordboats.xyz/api";
+    private static final OkHttpClient client = new OkHttpClient();
+    private static final String url = "https://discord.boats/api";
     private static final Logger log = LoggerFactory.getLogger(Boats4J.class);
 
     /**
