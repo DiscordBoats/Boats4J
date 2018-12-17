@@ -53,9 +53,9 @@ public class Boats4J {
      * @param sm ShardManager
      * @param token your token
      */
-    public Boats4J(ShardManager sm, String token, String botid) {
+    public Boats4J(ShardManager sm, String token) {
         this.token = token;
-        this.botid = botid;
+        this.botid = sm.getShardById(0).getSelfUser().getId();
         ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
         service.scheduleAtFixedRate(()->postStats(sm, token), 0, 20, TimeUnit.MINUTES);
     }
