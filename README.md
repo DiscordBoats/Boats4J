@@ -11,7 +11,7 @@ repositories {
   jcenter()
 }
 dependencies {
-  compile 'xyz.discordboats:Boats4J:1.0.1'
+  compile 'xyz.discordboats:Boats4J:1.0.2'
 }
 ```
 In Maven:
@@ -19,7 +19,7 @@ In Maven:
  <dependency>
   <groupId>xyz.discordboats</groupId>
   <artifactId>Boats4J</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
 </dependency>
 ```
 ```XML
