@@ -6,7 +6,7 @@ Discord Boats' Official Java API Wrapper
 
 # Adding To Your Project
 In Gradle:
-```groovy
+```gradle
 repositories {
   jcenter()
 }
