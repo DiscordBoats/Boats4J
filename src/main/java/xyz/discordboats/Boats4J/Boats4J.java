@@ -75,15 +75,15 @@ public class Boats4J {
      * @param token API token
      */
     public static void postStats(long server_count, String botid, String token) {
-        Request request = new Request.Builder().url(url+"/bot/"+botid)
+        Request request = new Request.Builder().url(url + "/bot/"+ botid)
                 .addHeader("Authorization", token)
                 .addHeader("content-type", "application/json")
                 .post(RequestBody.create(MediaType.parse("application/json; charset=utf-8"), new JSONObject().put("server_count", server_count).toString())).build();
         try {
             client.newCall(request).execute().close();
-            log.info("Successfully posted stats to discordboats.xyz");
+            log.info("Successfully posted stats to discord.boats");
         } catch (IOException e) {
-            log.error("Failed to post stats to discordboats.xyz, Error: " + e.getMessage());
+            log.error("Failed to post stats to discord.boats, Error: " + e.getMessage());
         }
     }
 
@@ -114,7 +114,7 @@ public class Boats4J {
      * @return the info of the bot
      */
     public static BotInfo fetchBotInfo(String id) {
-        Request request = new Request.Builder().url(url + "/bot/"+id).get().build();
+        Request request = new Request.Builder().url(url + "/bot/" +id ).get().build();
         try {
             Response resp = client.newCall(request).execute();
             ResponseBody body = resp.body();
@@ -127,13 +127,13 @@ public class Boats4J {
             resp.close();
             return info;
         } catch (IOException e) {
-            log.error("Failed to fetch bot info for id: " + id +". Error: " + e.getMessage());
+            log.error("Failed to fetch bot info for id: " + id + ". Error: " + e.getMessage());
             return null;
         }
     }
 
     public static UserInfo fetchUserInfo(String id) {
-        Request request = new Request.Builder().url(url + "/user/"+id).get().build();
+        Request request = new Request.Builder().url(url + "/user/" + id).get().build();
         try {
             Response resp = client.newCall(request).execute();
             ResponseBody body = resp.body();
